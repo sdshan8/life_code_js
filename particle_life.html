@@ -38,6 +38,11 @@
       grid-template-columns: auto;
       width: 100%;
     }
+    .idkatp {
+      display: grid;
+      grid-template-columns: auto auto;
+      width: 100%;
+    }
     .slidecontainer {
       margin: 7px 4px 7px 7px;
       padding: 3px 6px 3px 3px;
@@ -114,7 +119,13 @@
   <div class="canv">
     <canvas id="canvas"></canvas>
     <div class="res">
-      <input type="button" onclick="init()" value="start/reset" class="butt">
+      <div class="idkatp">
+        <input type="button" onclick="init()" value="start/reset" class="butt">
+        <div class="slidecontainer">
+          <span class="text">Factor</span>
+          <input type="range" min="1" max="10" value="1" class="slider" id="factor">
+        </div>
+      </div>
       <div class="col">
         <div class="slidecontainer">
           <span class="textcol">Red</span>
@@ -123,16 +134,16 @@
           <input type="range" min="1" max="1000" value="50" class="slider" id="num_red">
           <br>
           <span class="text">Red</span>
-          <input type="range" min="-2" max="2" value="0.878214014158254" class="red slider" id="gra_red_red">
+          <input type="range" min="-2000" max="2000" value="878.214014158254" class="red slider" id="gra_red_red">
           <br>
           <span class="text">Green</span>
-          <input type="range" min="-2" max="2" value="0.383942932294564" class="green slider" id="gra_red_green">
+          <input type="range" min="-2000" max="2000" value="383.942932294564" class="green slider" id="gra_red_green">
           <br>
           <span class="text">Blue</span>
-          <input type="range" min="-2" max="2" value="0.3632328353781209" class="blue slider" id="gra_red_blue">
+          <input type="range" min="-2000" max="2000" value="363.2328353781209" class="blue slider" id="gra_red_blue">
           <br>
           <span class="text">White</span>
-          <input type="range" min="-2" max="2" value="0.4357079645785089" class="white slider" id="gra_red_white">
+          <input type="range" min="-2000" max="2000" value="435.7079645785089" class="white slider" id="gra_red_white">
         </div>
         <div class="slidecontainer">
           <span class="textcol">Green</span>
@@ -141,16 +152,16 @@
           <input type="range" min="1" max="1000" value="50" class="slider" id="num_green">
           <br>
           <span class="text">Red</span>
-          <input type="range" min="-2" max="2" value="-0.8131279812066854" class="red slider" id="gra_green_red">
+          <input type="range" min="-2000" max="2000" value="-813.1279812066854" class="red slider" id="gra_green_red">
           <br>
           <span class="text">Green</span>
-          <input type="range" min="-2" max="2" value="0.8761564046567396" class="green slider" id="gra_green_green">
+          <input type="range" min="-2000" max="2000" value="876.1564046567396" class="green slider" id="gra_green_green">
           <br>
           <span class="text">Blue</span>
-          <input type="range" min="-2" max="2" value="-0.686246916739194" class="blue slider" id="gra_green_blue">
+          <input type="range" min="-2000" max="2000" value="-686.246916739194" class="blue slider" id="gra_green_blue">
           <br>
           <span class="text">White</span>
-          <input type="range" min="-2" max="2" value="-0.42403398294928163" class="white slider" id="gra_green_white">
+          <input type="range" min="-2000" max="2000" value="-424.03398294928163" class="white slider" id="gra_green_white">
         </div>
         <div class="slidecontainer">
           <span class="textcol">Blue</span>
@@ -159,16 +170,16 @@
           <input type="range" min="1" max="1000" value="50" class="slider" id="num_blue">
           <br>
           <span class="text">Red</span>
-          <input type="range" min="-2" max="2" value="0.8283611643992606" class="red slider" id="gra_blue_red">
+          <input type="range" min="-2000" max="2000" value="828.3611643992606" class="red slider" id="gra_blue_red">
           <br>
           <span class="text">Green</span>
-          <input type="range" min="-2" max="2" value="-0.8050409003234531" class="green slider" id="gra_blue_green">
+          <input type="range" min="-2000" max="2000" value="-805.0409003234531" class="green slider" id="gra_blue_green">
           <br>
           <span class="text">Blue</span>
-          <input type="range" min="-2" max="2" value="0.8422661062679588" class="blue slider" id="gra_blue_blue">
+          <input type="range" min="-2000" max="2000" value="842.2661062679588" class="blue slider" id="gra_blue_blue">
           <br>
           <span class="text">White</span>
-          <input type="range" min="-2" max="2" value="-0.6206303204367405" class="white slider" id="gra_blue_white">
+          <input type="range" min="-2000" max="2000" value="-620.6303204367405" class="white slider" id="gra_blue_white">
         </div>
         <div class="slidecontainer">
           <span class="textcol">White</span>
@@ -177,16 +188,16 @@
           <input type="range" min="1" max="1000" value="50" class="slider" id="num_white">
           <br>
           <span class="text">Red</span>
-          <input type="range" min="-2" max="2" value="-0.6276679142294777" class="red slider" id="gra_white_red">
+          <input type="range" min="-2000" max="2000" value="-627.6679142294777" class="red slider" id="gra_white_red">
           <br>
           <span class="text">Green</span>
-          <input type="range" min="-2" max="2" value="-0.48726835984229977" class="green slider" id="gra_white_green">
+          <input type="range" min="-2000" max="2000" value="-487.26835984229977" class="green slider" id="gra_white_green">
           <br>
           <span class="text">Blue</span>
-          <input type="range" min="-2" max="2" value="-0.8155039608681607" class="blue slider" id="gra_white_blue">
+          <input type="range" min="-2000" max="2000" value="-815.5039608681607" class="blue slider" id="gra_white_blue">
           <br>
           <span class="text">White</span>
-          <input type="range" min="-2" max="2" value="0.49503848830455155" class="white slider" id="gra_white_white">
+          <input type="range" min="-2000" max="2000" value="495.03848830455155" class="white slider" id="gra_white_white">
         </div>
       </div>
     </div>
@@ -194,31 +205,32 @@
   <script>
     init_rules = ()=> {
       // Rules values
-      factor = 2;
+      factor = document.getElementById("factor").value;
+      multiplier = 0.0001;
       RULES = {
         red: {
-          red: document.getElementById("gra_red_red").value * factor,
-          green: document.getElementById("gra_red_green").value * factor,
-          blue: document.getElementById("gra_red_blue").value * factor,
-          white: document.getElementById("gra_red_white").value * factor,
+          red: document.getElementById("gra_red_red").value * multiplier * factor,
+          green: document.getElementById("gra_red_green").value * multiplier * factor,
+          blue: document.getElementById("gra_red_blue").value * multiplier * factor,
+          white: document.getElementById("gra_red_white").value * multiplier * factor,
         },
         green: {
-          red: document.getElementById("gra_green_red").value * factor,
-          green: document.getElementById("gra_green_green").value * factor,
-          blue: document.getElementById("gra_green_blue").value * factor,
-          white: document.getElementById("gra_green_white").value * factor,
+          red: document.getElementById("gra_green_red").value * multiplier * factor,
+          green: document.getElementById("gra_green_green").value * multiplier * factor,
+          blue: document.getElementById("gra_green_blue").value * multiplier * factor,
+          white: document.getElementById("gra_green_white").value * multiplier * factor,
         },
         blue: {
-          red: document.getElementById("gra_blue_red").value * factor,
-          green: document.getElementById("gra_blue_green").value * factor,
-          blue: document.getElementById("gra_blue_blue").value * factor,
-          white: document.getElementById("gra_blue_white").value * factor,
+          red: document.getElementById("gra_blue_red").value * multiplier * factor,
+          green: document.getElementById("gra_blue_green").value * multiplier * factor,
+          blue: document.getElementById("gra_blue_blue").value * multiplier * factor,
+          white: document.getElementById("gra_blue_white").value * multiplier * factor,
         },
         white: {
-          red: document.getElementById("gra_white_red").value * factor,
-          green: document.getElementById("gra_white_green").value * factor,
-          blue: document.getElementById("gra_white_blue").value * factor,
-          white: document.getElementById("gra_white_white").value * factor,
+          red: document.getElementById("gra_white_red").value * multiplier * factor,
+          green: document.getElementById("gra_white_green").value * multiplier * factor,
+          blue: document.getElementById("gra_white_blue").value * multiplier * factor,
+          white: document.getElementById("gra_white_white").value * multiplier * factor,
         },
       };
 
