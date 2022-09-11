@@ -6,6 +6,4 @@ Interface
 ![](images/interface.png)
 ![](images/interface_desk.png)
 
-Todos:
---------------------
-1. Show the parameters on one side of the Sliders.
+Archiving this as the original life_code javascript version has a UI now
