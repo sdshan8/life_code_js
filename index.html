@@ -1,0 +1,783 @@
+<html>
+
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+
+    html, body {
+
+      width: 100%;
+
+      padding: 0;
+
+      margin: 0;
+
+      background: #111;
+
+    }
+
+    .canv {
+
+      width: 100%;
+
+      display: grid;
+
+      grid-template-columns: auto;
+
+    }
+
+    .col {
+
+      width: 100%;
+
+      display: grid;
+
+      grid-template-columns: auto auto;
+
+    }
+
+@media only screen and (min-width: 768px) {
+
+      .canv {
+
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns: auto auto;
+
+      }
+
+      .col {
+
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns: auto;
+
+      }
+
+    }
+
+    .res {
+
+      display: grid;
+
+      grid-template-columns: auto;
+
+      width: 100%;
+
+    }
+
+    .idkatp {
+
+      display: grid;
+
+      grid-template-columns: auto auto;
+
+      width: 100%;
+
+    }
+
+    .slidecontainer {
+
+      margin: 7px 4px 7px 7px;
+
+      padding: 3px 6px 3px 3px;
+
+      background: #444455;
+
+      border: 7px;
+
+      border-radius: 7px;
+
+    }
+
+    .butt {
+
+      margin: 7px;
+
+      padding: 3px;
+
+      background-color: #444455;
+
+      border: none;
+
+      text-align: center;
+
+      text-decoration: none;
+
+      display: inline-block;
+
+      color: #EEE;
+
+    }
+
+    .slider {
+
+      -webkit-appearance: none;
+
+      appearance: none;
+
+      width: 100%;
+
+      height: 15px;
+
+      background: #d3d3d377;
+
+      outline: none
+
+      opacity: 0.7;
+
+      -webkit-transition: .2s;
+
+      transition: opacity .2s;
+
+      z-index: 3;
+
+    }
+
+    .slider:hover {
+
+      opacity: 1;
+
+    }
+
+    .slider::-webkit-slider-thumb {
+
+      -webkit-appearance: none;
+
+      appearance: none;
+
+      width: 15px;
+
+      height: 15px;
+
+      background: #CCC;
+
+      cursor: pointer;
+
+    }
+
+    .slider::-moz-range-thumb {
+
+      width: 15px;
+
+      height: 15px;
+
+      background: #CCC;
+
+      cursor: pointer;
+
+    }
+
+    .red::-webkit-slider-thumb {
+
+      background: #EE0404;
+
+    }
+
+    .red::-moz-range-thumb {
+
+      background: #EE0404;
+
+    }
+
+    .green::-webkit-slider-thumb {
+
+      background: #04AA04;
+
+    }
+
+    .green::-moz-range-thumb {
+
+      background: #04AA04;
+
+    }
+
+    .blue::-webkit-slider-thumb {
+
+      background: #0404EE;
+
+    }
+
+    .blue::-moz-range-thumb {
+
+      background: #0404EE;
+
+    }
+
+    .text, .textcol {
+
+      color: #FFF;
+
+    }
+
+    .text {
+
+      margin: 2.5px;
+
+      font-size: 10px;
+
+      position: absolute;
+
+      z-index: 2;
+
+      pointer-events: none
+
+    }
+
+    .textcol {
+
+      font-weight: bold;
+
+    }
+
+  </style>
+
+  <title>Particle Life</title>
+
+</head>
+
+<body>
+
+  <div class="canv">
+
+    <canvas id="canvas"></canvas>
+
+    <div class="res">
+
+      <div class="idkatp">
+
+        <input type="button" onclick="init()" value="start/reset" class="butt">
+
+        <div class="slidecontainer">
+
+          <span class="text">Factor</span>
+
+          <input type="range" min="1" max="10" value="1" class="slider" id="factor">
+
+        </div>
+
+      </div>
+
+      <div class="col">
+
+        <div class="slidecontainer">
+
+          <span class="textcol">Red</span>
+
+          <br>
+
+          <span class="text">Number</span>
+
+          <input type="range" min="1" max="1000" value="50" class="slider" id="num_red">
+
+          <br>
+
+          <span class="text">Red</span>
+
+          <input type="range" min="-2000" max="2000" value="878.214014158254" class="red slider" id="gra_red_red">
+
+          <br>
+
+          <span class="text">Green</span>
+
+          <input type="range" min="-2000" max="2000" value="383.942932294564" class="green slider" id="gra_red_green">
+
+          <br>
+
+          <span class="text">Blue</span>
+
+          <input type="range" min="-2000" max="2000" value="363.2328353781209" class="blue slider" id="gra_red_blue">
+
+          <br>
+
+          <span class="text">White</span>
+
+          <input type="range" min="-2000" max="2000" value="435.7079645785089" class="white slider" id="gra_red_white">
+
+        </div>
+
+        <div class="slidecontainer">
+
+          <span class="textcol">Green</span>
+
+          <br>
+
+          <span class="text">Number</span>
+
+          <input type="range" min="1" max="1000" value="50" class="slider" id="num_green">
+
+          <br>
+
+          <span class="text">Red</span>
+
+          <input type="range" min="-2000" max="2000" value="-813.1279812066854" class="red slider" id="gra_green_red">
+
+          <br>
+
+          <span class="text">Green</span>
+
+          <input type="range" min="-2000" max="2000" value="876.1564046567396" class="green slider" id="gra_green_green">
+
+          <br>
+
+          <span class="text">Blue</span>
+
+          <input type="range" min="-2000" max="2000" value="-686.246916739194" class="blue slider" id="gra_green_blue">
+
+          <br>
+
+          <span class="text">White</span>
+
+          <input type="range" min="-2000" max="2000" value="-424.03398294928163" class="white slider" id="gra_green_white">
+
+        </div>
+
+        <div class="slidecontainer">
+
+          <span class="textcol">Blue</span>
+
+          <br>
+
+          <span class="text">Number</span>
+
+          <input type="range" min="1" max="1000" value="50" class="slider" id="num_blue">
+
+          <br>
+
+          <span class="text">Red</span>
+
+          <input type="range" min="-2000" max="2000" value="828.3611643992606" class="red slider" id="gra_blue_red">
+
+          <br>
+
+          <span class="text">Green</span>
+
+          <input type="range" min="-2000" max="2000" value="-805.0409003234531" class="green slider" id="gra_blue_green">
+
+          <br>
+
+          <span class="text">Blue</span>
+
+          <input type="range" min="-2000" max="2000" value="842.2661062679588" class="blue slider" id="gra_blue_blue">
+
+          <br>
+
+          <span class="text">White</span>
+
+          <input type="range" min="-2000" max="2000" value="-620.6303204367405" class="white slider" id="gra_blue_white">
+
+        </div>
+
+        <div class="slidecontainer">
+
+          <span class="textcol">White</span>
+
+          <br>
+
+          <span class="text">Number</span>
+
+          <input type="range" min="1" max="1000" value="50" class="slider" id="num_white">
+
+          <br>
+
+          <span class="text">Red</span>
+
+          <input type="range" min="-2000" max="2000" value="-627.6679142294777" class="red slider" id="gra_white_red">
+
+          <br>
+
+          <span class="text">Green</span>
+
+          <input type="range" min="-2000" max="2000" value="-487.26835984229977" class="green slider" id="gra_white_green">
+
+          <br>
+
+          <span class="text">Blue</span>
+
+          <input type="range" min="-2000" max="2000" value="-815.5039608681607" class="blue slider" id="gra_white_blue">
+
+          <br>
+
+          <span class="text">White</span>
+
+          <input type="range" min="-2000" max="2000" value="495.03848830455155" class="white slider" id="gra_white_white">
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    init_rules = ()=> {
+
+      // Rules values
+
+      factor = document.getElementById("factor").value;
+
+      multiplier = 0.0001;
+
+      RULES = {
+
+        red: {
+
+          red: document.getElementById("gra_red_red").value * multiplier * factor,
+
+          green: document.getElementById("gra_red_green").value * multiplier * factor,
+
+          blue: document.getElementById("gra_red_blue").value * multiplier * factor,
+
+          white: document.getElementById("gra_red_white").value * multiplier * factor,
+
+        },
+
+        green: {
+
+          red: document.getElementById("gra_green_red").value * multiplier * factor,
+
+          green: document.getElementById("gra_green_green").value * multiplier * factor,
+
+          blue: document.getElementById("gra_green_blue").value * multiplier * factor,
+
+          white: document.getElementById("gra_green_white").value * multiplier * factor,
+
+        },
+
+        blue: {
+
+          red: document.getElementById("gra_blue_red").value * multiplier * factor,
+
+          green: document.getElementById("gra_blue_green").value * multiplier * factor,
+
+          blue: document.getElementById("gra_blue_blue").value * multiplier * factor,
+
+          white: document.getElementById("gra_blue_white").value * multiplier * factor,
+
+        },
+
+        white: {
+
+          red: document.getElementById("gra_white_red").value * multiplier * factor,
+
+          green: document.getElementById("gra_white_green").value * multiplier * factor,
+
+          blue: document.getElementById("gra_white_blue").value * multiplier * factor,
+
+          white: document.getElementById("gra_white_white").value * multiplier * factor,
+
+        },
+
+      };
+
+      // const RULES = {
+
+      //   green: {
+
+      //     green: Math.random() * 2 - 1,
+
+      //     red: Math.random() * 2 - 1,
+
+      //     yellow: Math.random() * 2 - 1,
+
+      //     blue: Math.random() * 2 - 1,
+
+      //   },
+
+      //   red: {
+
+      //     green: Math.random() * 2 - 1,
+
+      //     red: Math.random() * 2 - 1,
+
+      //     yellow: Math.random() * 2 - 1,
+
+      //     blue: Math.random() * 2 - 1,
+
+      //   },
+
+      //   yellow: {
+
+      //     green: Math.random() * 2 - 1,
+
+      //     red: Math.random() * 2 - 1,
+
+      //     yellow: Math.random() * 2 - 1,
+
+      //     blue: Math.random() * 2 - 1,
+
+      //   },
+
+      //   blue: {
+
+      //     green: Math.random() * 2 - 1,
+
+      //     red: Math.random() * 2 - 1,
+
+      //     yellow: Math.random() * 2 - 1,
+
+      //     blue: Math.random() * 2 - 1,
+
+      //   },
+
+      // };
+
+      console.log(JSON.stringify(RULES));
+
+    };
+
+    //initialising the Rules
+
+    init_rules();
+
+    //reset
+
+    reset = ()=> {
+
+      fx = 0;
+
+      fx = 0;
+
+      i = 0;
+
+      j = 0;
+
+      atoms.length = 0
+
+      update();
+
+    };
+
+  </script>
+
+  <script>
+
+    // Canvas
+
+    const canvas = document.getElementById('canvas');
+
+    // Canvas Dimetions
+
+    updateCanvasDimensions()
+
+    function updateCanvasDimensions() {
+
+      canvas.width = canvas.height = Math.min(window.innerWidth, window.innerHeight);
+
+    }
+
+    const m = canvas.getContext("2d");
+
+    const draw = (x, y, c, s) => {
+
+      m.fillStyle = c;
+
+      m.fillRect(x, y, s, s);
+
+    };
+
+    // Atoms array
+
+    const atoms = [];
+
+    const atom = (x, y, c) => {
+
+      return {
+
+        x: x,
+
+        y: y,
+
+        vx: 0,
+
+        vy: 0,
+
+        color: c
+
+      };
+
+    };
+
+    // Initiate Random locations for Atoms ( used when atoms created )
+
+    const randomX = () => {
+
+      return Math.random() * (canvas.width - 100) + 50;
+
+    };
+
+    const randomY = () => {
+
+      return Math.random() * (canvas.height - 100) + 50;
+
+    };
+
+    // Create an Atoms
+
+    const create = (number, color) => {
+
+      for (let i = 0; i < number; i++) {
+
+        atoms.push(atom(randomX(), randomY(), color));
+
+      }
+
+    };
+
+    // Apply Rules ( How atoms interact with each other )
+
+    const applyRules = () => {
+
+      for (let i = 0; i < atoms.length; i++) {
+
+        let fx = 0;
+
+        let fy = 0;
+
+        const a = atoms[i];
+
+        for (let j = 0; j < atoms.length; j++) {
+
+          if (j !== i) {
+
+            const b = atoms[j];
+
+            const g = RULES[a.color][b.color]; // * factor;
+
+            if (g !== undefined) {
+
+              const dx = a.x - b.x;
+
+              const dy = a.y - b.y;
+
+              if (dx !== 0 || dy !== 0) {
+
+                const d = dx * dx + dy * dy;
+
+                if (d < 6400) {
+
+                  const F = g / Math.sqrt(d);
+
+                  fx += F * dx;
+
+                  fy += F * dy;
+
+                }
+
+              }
+
+            }
+
+          }
+
+        }
+
+        a.vx = (a.vx + fx) * 0.5;
+
+        a.vy = (a.vy + fy) * 0.5;
+
+        a.x += a.vx;
+
+        a.y += a.vy;
+
+        // When Atoms touch or bypass canvas borders
+
+        // X - axis
+
+        if (a.x <= 0) {
+
+          a.vx *= -1;
+
+          a.x = 0;
+
+        }
+
+        if (a.x >= canvas.width) {
+
+          a.vx *= -1;
+
+          a.x = canvas.width;
+
+        }
+
+        // Y - axis
+
+        if (a.y <= 0) {
+
+          a.vy *= -1;
+
+          a.y = 0;
+
+        }
+
+        if (a.y >= canvas.height) {
+
+          a.vy *= -1;
+
+          a.y = canvas.height;
+
+        }
+
+      }
+
+    };
+
+    //initialising
+
+    init = ()=> {
+
+      reset();
+
+      init_rules();
+
+      // Create Atoms
+
+      create(document.getElementById("num_red").value, "red");
+
+      create(document.getElementById("num_green").value, "green");
+
+      create(document.getElementById("num_blue").value, "blue");
+
+      create(document.getElementById("num_white").value, "white");
+
+    };
+
+    // Update Frames
+
+    update();
+
+    function update() {
+
+      // Update Canvas Dimensions - if screen size changed
+
+      updateCanvasDimensions()
+
+      applyRules();
+
+      m.clearRect(0, 0, canvas.width, canvas.height);
+
+      draw(0, 0, "black", Math.max(canvas.height, canvas.width));
+
+      for (i = 0; i < atoms.length; i += 1) {
+
+        draw(atoms[i].x, atoms[i].y, atoms[i].color, 3);
+
+      }
+
+      requestAnimationFrame(update);
+
+    };
+
+  </script>
+
+</body>
+
+</html>
